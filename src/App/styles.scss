@@ -1,0 +1,92 @@
+@font-face {
+  font-family: CairoRegular;
+  src: url("../fonts/Cairo/Cairo-VariableFont_slnt_wght.ttf");
+}
+@font-face {
+  font-family: OrbitronRegular;
+  src: url("../fonts/Orbitron/Orbitron-VariableFont_wght.ttf");
+}
+
+:root,
+body {
+  font-family: CairoRegular;
+  font-size: 16px;
+  height: 100%;
+}
+
+:root {
+  --clr-bg: #060606;
+  --clr-bg-2: #202020;
+
+  --clr-highlight: #d0f83e;
+  --clr-under-headings: #00f2e4;
+  --clr-highlight-transparent: rgba(208, 248, 62, 0.76);
+
+  --clr-font-main: #fff;
+  --clr-font-hightlight: #d0f83e;
+}
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-font-main);
+  margin: 0;
+  padding: 0;
+}
+#root {
+  height: 100%;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 770px;
+  height: 100%;
+
+  @mixin logoImage {
+    margin: 0;
+    padding: 0;
+    color: var(--clr-font-main);
+    background-repeat: no-repeat;
+    text-indent: -10000px;
+  }
+
+  header {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+
+    h1.logo {
+      @include logoImage;
+      background-image: url("../images/logo_top.png");
+      width: 198px;
+      flex: 1 1 198px;
+      height: 49px;
+    }
+  }
+
+  section {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > * {
+      flex-basis: 340px;
+    }
+
+    h3.logo {
+      @include logoImage;
+      background-image: url("../images/logo_bottom.png");
+      background-position: center;
+      width: 219px;
+      height: 54px;
+    }
+  }
+}

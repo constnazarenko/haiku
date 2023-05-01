@@ -1,0 +1,15 @@
+.socials {
+  color: var(--clr-font-hightlight);
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    font-size: 1.25rem;
+    color: var(--clr-font-hightlight);
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin-right: 1rem;
+    }
+  }
+}

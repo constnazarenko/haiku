@@ -1,0 +1,64 @@
+.form-section {
+  width: 600px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    position: relative;
+    color: var(--clr-font-main);
+    font-size: 1.75rem;
+    font-family: OrbitronRegular;
+    margin: 0 0 5rem 0;
+
+    &::after {
+      position: absolute;
+      bottom: -0.75rem;
+      left: calc(50% - (3.125rem / 2));
+      content: "";
+      width: 3.125rem;
+      height: 0.2rem;
+      background: var(--clr-under-headings);
+    }
+  }
+  @mixin greenCube {
+    content: "";
+    width: 83px;
+    height: 77px;
+    background: var(--clr-highlight);
+    position: absolute;
+    z-index: -1;
+  }
+  .form-wrapper {
+    position: relative;
+
+    &::before {
+      @include greenCube;
+      top: -8px;
+      left: -8px;
+    }
+    &::after {
+      @include greenCube;
+      top: -8px;
+      right: -8px;
+    }
+
+    .form-container {
+      background: var(--clr-bg-2);
+      width: 600px;
+      height: 500px;
+
+      &::before {
+        @include greenCube;
+        bottom: -8px;
+        left: -8px;
+      }
+      &::after {
+        @include greenCube;
+        bottom: -8px;
+        right: -8px;
+      }
+    }
+  }
+}
