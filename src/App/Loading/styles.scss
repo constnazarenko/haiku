@@ -1,20 +1,18 @@
-.app {
-  .loading-screen {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    position: fixed;
-    box-sizing: border-box;
-    inset: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: rgb(232, 232, 232);
-    font-family: Menlo, Consolas, monospace;
-    font-size: large;
-    padding: 2rem;
-    line-height: 1.2;
-    white-space: pre-wrap;
-    overflow: auto;
-  }
+.loading-screen {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  position: fixed;
+  box-sizing: border-box;
+  inset: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: rgb(232, 232, 232);
+  font-family: Menlo, Consolas, monospace;
+  font-size: large;
+  padding: 2rem;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  overflow: auto;
 }

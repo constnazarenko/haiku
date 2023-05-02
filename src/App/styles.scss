@@ -1,15 +1,15 @@
 @font-face {
-  font-family: CairoRegular;
+  font-family: Cairo;
   src: url("../fonts/Cairo/Cairo-VariableFont_slnt_wght.ttf");
 }
 @font-face {
-  font-family: OrbitronRegular;
+  font-family: Orbitron;
   src: url("../fonts/Orbitron/Orbitron-VariableFont_wght.ttf");
 }
 
 :root,
 body {
-  font-family: CairoRegular;
+  font-family: Cairo;
   font-size: 16px;
   height: 100%;
 }
@@ -20,10 +20,15 @@ body {
 
   --clr-highlight: #d0f83e;
   --clr-under-headings: #00f2e4;
-  --clr-highlight-transparent: rgba(208, 248, 62, 0.76);
 
   --clr-font-main: #fff;
-  --clr-font-hightlight: #d0f83e;
+  --clr-font-highlight: #d0f83e;
+  --clr-font-dark: #202020;
+
+  --clr-odd-1: #e92a67;
+  --clr-odd-2: #a853ba;
+  --clr-odd-3: #2a8af6;
+  --clr-odd-4: rgba(42, 138, 246, 0);
 }
 
 body {
@@ -87,6 +92,64 @@ body {
       background-position: center;
       width: 219px;
       height: 54px;
+    }
+  }
+}
+
+@property --gradient-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 360deg;
+  }
+  100% {
+    --gradient-angle: 0deg;
+  }
+}
+
+button {
+  border: 1px solid var(--clr-bg-2);
+  border-radius: 4px;
+  background: var(--clr-highlight);
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  font-family: Orbitron;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 9;
+
+  &:hover {
+    background: var(--clr-under-headings);
+
+    &::before {
+      background: conic-gradient(
+        from var(--gradient-angle),
+        var(--clr-odd-1) 0deg,
+        var(--clr-odd-2) 112.5deg,
+        var(--clr-odd-3) 228.75deg,
+        var(--clr-odd-4) 360deg
+      );
+      -webkit-mask-image: linear-gradient(0deg, #000 2px, transparent 0),
+        linear-gradient(90deg, #000 2px, transparent 0),
+        linear-gradient(180deg, #000 2px, transparent 0),
+        linear-gradient(270deg, #000 2px, transparent 0);
+      mask-image: linear-gradient(0deg, #000 2px, transparent 0),
+        linear-gradient(90deg, #000 2px, transparent 0),
+        linear-gradient(180deg, #000 2px, transparent 0),
+        linear-gradient(270deg, #000 2px, transparent 0);
+      border-radius: inherit;
+      content: "";
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      animation: rotation 2s linear infinite;
     }
   }
 }

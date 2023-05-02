@@ -1,20 +1,22 @@
 import React, { FC, useContext } from "react";
-import "./styles.scss";
-import { UserContext } from "../component";
+import {SwitchContext, UserContext} from "../component";
 
-export interface UserBlockProps {
-  isLoginPage: boolean;
-  isLoggedIn?: boolean;
-}
-
-export const UserBlock: FC<UserBlockProps> = (props) => {
+export const UserBlock: FC<{}> = (props) => {
   const { user, setUser } = useContext(UserContext);
+  const { isASignUpPage, setASignUpPage } = useContext(SwitchContext);
+
+  const handleSwitchForm = () => {
+    setASignUpPage(!isASignUpPage);
+  };
 
   return (
     <div className="user-block">
       {!!user.isLogged && <div>@{user.data.username}</div>}
-      {!user.isLogged && !props.isLoginPage && <button>Login</button>}
-      {!user.isLogged && !!props.isLoginPage && <button>Sign Up</button>}
+      {!user.isLogged && (
+        <button onClick={handleSwitchForm}>
+          {isASignUpPage ? "Login" : "Sign Up"}
+        </button>
+      )}
     </div>
   );
 };
