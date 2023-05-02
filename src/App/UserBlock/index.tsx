@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
-import {SwitchContext, UserContext} from "../component";
+import { SwitchContext, UserContext } from "../../App";
 
-export const UserBlock: FC<{}> = (props) => {
+export const UserBlock: FC = () => {
   const { user, setUser } = useContext(UserContext);
   const { isASignUpPage, setASignUpPage } = useContext(SwitchContext);
 

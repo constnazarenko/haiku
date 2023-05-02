@@ -1,10 +1,10 @@
-import React, {FC, useCallback, useContext, useState} from "react";
+import React, { FC, useCallback, useContext, useState } from "react";
 import Input from "./Input";
-import {SwitchContext} from "../component";
+import { SwitchContext } from "../../App";
 
-const SignUp: FC<{}> = (props) => {
+const SignUp: FC = () => {
   const { isASignUpPage, setASignUpPage } = useContext(SwitchContext);
-  const [ isSubmited, setSubmited ] = useState(false);
+  const [isSubmited, setSubmited] = useState(false);
 
   const userDataInitial = {
     username: "",
@@ -31,19 +31,22 @@ const SignUp: FC<{}> = (props) => {
     if (
       !newErrors.password &&
       !newErrors.repassword &&
-        userData.password !== userData.repassword
+      userData.password !== userData.repassword
     ) {
       newErrors.repassword = "Passwords should match";
     }
-    if (!newErrors.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(userData.email)) {
-        newErrors.email = "Please use valid email!";
+    if (
+      !newErrors.email &&
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(userData.email)
+    ) {
+      newErrors.email = "Please use valid email!";
     }
     if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
+      setErrors(newErrors);
     } else {
-        // TODO: placeholder for actual request
-        // useSubmitForm('https://someAPIendpoint', userData);
-        setSubmited(true);
+      // TODO: placeholder for actual request
+      // useSubmitForm('https://someAPIendpoint', userData);
+      setSubmited(true);
     }
   };
 
@@ -52,16 +55,17 @@ const SignUp: FC<{}> = (props) => {
     setASignUpPage(false);
   };
 
-  const handleChange = useCallback((id: keyof typeof userDataInitial) => {
-    return (value: string) => {
-      setUser({ ...userData, [id]: value });
-    };
-  }, [userData]);
+  const handleChange = useCallback(
+    (id: keyof typeof userDataInitial) => {
+      return (value: string) => {
+        setUser({ ...userData, [id]: value });
+      };
+    },
+    [userData]
+  );
 
   if (isSubmited) {
-      return (
-          <div className="notice">The form was submitted.</div>
-      );
+    return <div className="notice">The form was submitted.</div>;
   }
 
   return (

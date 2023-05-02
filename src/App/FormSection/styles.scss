@@ -20,6 +20,11 @@
       width: 3.125rem;
       height: 0.2rem;
       background: var(--clr-under-headings);
+      transition: width linear 2s, left linear 2s;
+    }
+    &:hover::after {
+      width: 100%;
+      left: calc(50% - (100% / 2));
     }
   }
   @mixin greenCube {
@@ -68,7 +73,7 @@
         background: var(--clr-under-headings);
         margin: 3rem 1rem;
         padding: 3rem;
-        color: var(--clr-font-dark)
+        color: var(--clr-font-dark);
       }
       form {
         display: flex;
@@ -110,6 +115,10 @@
           }
           a {
             color: var(--clr-font-highlight);
+
+            &:hover {
+              color: var(--clr-under-headings);
+            }
           }
 
           &.centered {

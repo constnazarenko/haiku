@@ -11,5 +11,8 @@
     &:last-child {
       margin-right: 1rem;
     }
+    &:hover {
+      color: var(--clr-under-headings);
+    }
   }
 }

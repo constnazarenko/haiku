@@ -1,10 +1,10 @@
-import React, {FC, useContext, useEffect, useState} from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
-import {SwitchContext} from "../component";
+import { SwitchContext } from "../../App";
 
-const FormSection: FC<{}> = (props) => {
+const FormSection: FC = () => {
   const { isASignUpPage, setASignUpPage } = useContext(SwitchContext);
 
   return (
@@ -22,34 +22,34 @@ const FormSection: FC<{}> = (props) => {
 
 // TODO: Just a placeholder for requests
 export const useSubmitForm = (url, data) => {
-    const [state, setState] = useState(null);
-    const init = {
-        method: "post",
-        headers: {},
-        body: data ? JSON.stringify(data) : undefined,
+  const [state, setState] = useState(null);
+  const init = {
+    method: "post",
+    headers: {},
+    body: data ? JSON.stringify(data) : undefined,
+  };
+
+  useEffect(() => {
+    let ignore = false;
+    const dataFetch = async () => {
+      const data = await (await fetch(url, init)).json();
+      if (!ignore) {
+        setState(data);
+      }
     };
 
-    useEffect(() => {
-        let ignore = false;
-        const dataFetch = async () => {
-            const data = await (await fetch(url, init)).json();
-            if (!ignore) {
-                setState(data);
-            }
-        };
+    try {
+      dataFetch();
+    } catch (e) {
+      setState(null);
+    }
 
-        try {
-            dataFetch();
-        } catch (e) {
-            setState(null);
-        }
+    return () => {
+      ignore = true;
+    };
+  }, [url]);
 
-        return () => {
-            ignore = true;
-        };
-    }, [url]);
-
-    return { result: state };
+  return { result: state };
 };
 
 export default FormSection;

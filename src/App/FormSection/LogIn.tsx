@@ -1,11 +1,11 @@
-import React, {FC, useCallback, useContext, useEffect, useState} from "react";
+import React, { FC, useCallback, useContext, useEffect, useState } from "react";
 import Input from "./Input";
-import {SwitchContext} from "../component";
-import {useSubmitForm} from "./index";
+import { SwitchContext } from "../../App";
+import { useSubmitForm } from "../FormSection";
 
-const LogIn: FC<{}> = (props) => {
+const LogIn: FC = () => {
   const { isASignUpPage, setASignUpPage } = useContext(SwitchContext);
-  const [ isSubmited, setSubmited ] = useState(false);
+  const [isSubmited, setSubmited] = useState(false);
 
   const userDataInitial = {
     username: "",
@@ -26,11 +26,11 @@ const LogIn: FC<{}> = (props) => {
         return { ...accumulator, [currentValue[0]]: "Please fill!" };
       }, {});
     if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
+      setErrors(newErrors);
     } else {
-        // TODO: placeholder for actual request
-        // useSubmitForm('https://someAPIendpoint', userData);
-        setSubmited(true);
+      // TODO: placeholder for actual request
+      // useSubmitForm('https://someAPIendpoint', userData);
+      setSubmited(true);
     }
   };
 
@@ -39,16 +39,17 @@ const LogIn: FC<{}> = (props) => {
     setASignUpPage(true);
   };
 
-  const handleChange = useCallback((id: keyof typeof userDataInitial) => {
-    return (value: string) => {
-      setUser({ ...userData, [id]: value });
-    };
-  }, [userData]);
+  const handleChange = useCallback(
+    (id: keyof typeof userDataInitial) => {
+      return (value: string) => {
+        setUser({ ...userData, [id]: value });
+      };
+    },
+    [userData]
+  );
 
   if (isSubmited) {
-      return (
-          <div className="notice">The form was submitted.</div>
-      );
+    return <div className="notice">The form was submitted.</div>;
   }
 
   return (
@@ -71,7 +72,10 @@ const LogIn: FC<{}> = (props) => {
         <button>Login</button>
       </div>
       <div className="control centered">
-          Don't have a Haiku account?&nbsp;<a href="#" onClick={handleGoToSignUp}>Sign up.</a>
+        Don't have a Haiku account?&nbsp;
+        <a href="#" onClick={handleGoToSignUp}>
+          Sign up.
+        </a>
       </div>
     </form>
   );

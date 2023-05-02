@@ -20,7 +20,7 @@ export interface User {
   data?: UserData;
 }
 
-const App: FC<{}> = (props) => {
+const App: FC = () => {
   // TODO: to extend functionality consider using useReducer here
   const [user, setUser] = useState({ isLogged: false } as User);
 
@@ -29,10 +29,16 @@ const App: FC<{}> = (props) => {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <SwitchContext.Provider value={{isASignUpPage, setASignUpPage}}>
+      <SwitchContext.Provider value={{ isASignUpPage, setASignUpPage }}>
         <div className="app-container">
           <header>
-            <a href="#" onClick={(event) => {event.preventDefault(); setASignUpPage(true)}}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setASignUpPage(true);
+              }}
+            >
               <h1 className="logo">World of Haiku</h1>
             </a>
             <UserBlock />

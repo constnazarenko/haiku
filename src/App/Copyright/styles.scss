@@ -29,6 +29,10 @@
         color: var(--clr-font-highlight);
         text-decoration: none;
         font-weight: 600;
+
+        &:hover {
+          color: var(--clr-under-headings);
+        }
       }
     }
   }
