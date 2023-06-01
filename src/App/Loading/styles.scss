@@ -1,18 +1,149 @@
-.loading-screen {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  position: fixed;
-  box-sizing: border-box;
-  inset: 0px;
+.overlay {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: rgb(232, 232, 232);
-  font-family: Menlo, Consolas, monospace;
-  font-size: large;
-  padding: 2rem;
-  line-height: 1.2;
-  white-space: pre-wrap;
-  overflow: auto;
+  background: #000000dd;
+  position: fixed;
+  z-index: 9001;
+}
+
+.loader-ring {
+  width: 13rem;
+  height: 13rem;
+  margin: 0.4rem;
+  background: #2c2c2c;
+  border: 0.3rem solid #eb0c1b;
+  filter: drop-shadow(0 0 0.7rem #216e6d);
+  border-radius: 100%;
+  box-sizing: border-box;
+  animation: 6s ease-in infinite normal both running change-border-color;
+  position: absolute;
+  z-index: 9012;
+  top: calc(50% - 13rem / 2);
+  left: calc(50% - 13rem / 2);
+
+  .filler {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+
+    animation: 6s ease-in infinite normal both running change-background-color;
+    transition: background-image linear 1s;
+
+    position: relative;
+    z-index: 9013;
+
+    .rotate {
+      border: 2rem solid transparent;
+      box-sizing: border-box;
+      border-radius: 100%;
+      width: 10rem;
+      height: 10rem;
+      position: absolute;
+      top: calc(50% - 5rem);
+      left: calc(50% - 5rem);
+
+      &.rotate-1 {
+        border-top-color: #eb0c1b;
+        animation: 4s ease-in infinite normal both running loader-rotation, 4s ease-in-out infinite loader-appearing;
+      }
+
+      &.rotate-2 {
+        border-bottom-color: #eb0c1b;
+        animation: 4s ease-out infinite normal both running loader-rotation, 4s ease-in-out infinite loader-appearing;
+      }
+    }
+
+    .scale {
+      position: absolute;
+      width: 8rem;
+      height: 8rem;
+      border: 2px dotted red;
+      border-radius: 100%;
+      color: navy;
+      top: calc(50% - 4rem);
+      left: calc(50% - 4rem);
+
+      animation: 6s ease-in-out infinite normal both running scale-border-solidify;
+
+      background: url('../../images/round-logo.svg') no-repeat 1.125rem;
+      background-size: 5rem;
+    }
+  }
+
+  @keyframes scale-border-solidify {
+    0% {
+      border-style: dotted;
+    }
+    25% {
+      border-style: dotted;
+    }
+    50% {
+      border-style: solid;
+    }
+    75% {
+      border-style: dotted;
+    }
+    100% {
+      border-style: dotted;
+    }
+  }
+  @keyframes loader-rotation {
+    from {
+      rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+  @keyframes loader-appearing {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+  @keyframes change-background-color {
+    0% {
+      background-color: #51c3c4;
+      box-shadow: inset 0 0 5rem #195a5a;
+    }
+    25% {
+      background-color: #000;
+      box-shadow: inset 0 0 5rem #000;
+    }
+    50% {
+      background-color: #195a5a;
+      box-shadow: inset 0 0 5rem #51c3c4;
+    }
+    75% {
+      background-color: #195a5a;
+      box-shadow: inset 0 0 5rem #000;
+    }
+    100% {
+      background-color: #51c3c4;
+      box-shadow: inset 0 0 5rem #195a5a;
+    }
+  }
+  @keyframes change-border-color {
+    0% {
+      border-color: #eb0c1b;
+    }
+    25% {
+      border-color: #000;
+      box-shadow: 0 0 0.5rem 0.5rem #000;
+    }
+    50% {
+      border-color: #eb0c1b;
+    }
+    75% {
+      border-color: #910912;
+    }
+    100% {
+      border-color: #eb0c1b;
+    }
+  }
 }
